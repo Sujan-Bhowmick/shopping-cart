@@ -48,7 +48,7 @@ const reducer1 = (state = initialState, action) => {
             }
         case DECREMENT_CART_QUANTITY:
             // incrementProduct.quantity > 1
-            if (incrementProduct.quantity > 1) {
+            if (incrementProduct.quantity) {
                 incrementProduct.quantity = incrementProduct.quantity - 1
                 incrementProduct.quantities = incrementProduct.quantities + 1
                 const newProduct = state.cart.filter(product => product.id !== incrementProduct.id)
@@ -61,9 +61,14 @@ const reducer1 = (state = initialState, action) => {
             return {
                 ...state
             }
-
-           
-          
+        case DELETE_PRODUCT:
+                const newProduct = state.cart.filter(product => product.id !== action.payload);
+                console.log(state.cart)
+                console.log(newProduct)
+                return {
+                    // ...state, 
+                    cart: [...newProduct]
+                }
         default:
             return state;
     }

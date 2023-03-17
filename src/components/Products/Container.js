@@ -20,7 +20,7 @@ export default function Container() {
     <div className="productContainer" id="lws-productContainer">
       {/* <!-- product item --> */}
       {
-        products.map((product, id) => <div key={product.id} className="lws-productCard">
+        products.sort((a,b) => a.id - b.id).map((product, id) => <div key={product.id} className="lws-productCard">
           <img className="lws-productImage" src={product.image} alt="product" />
           <div className="p-4 space-y-2">
             <h4 className="lws-productName">{product.product}</h4>

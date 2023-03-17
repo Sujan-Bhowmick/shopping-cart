@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import '../../App.css';
-import { incrementCartQuantity, decrementCartQuantity } from '../../redux/carts/actions';
+import { incrementCartQuantity, decrementCartQuantity, deleteProduct } from '../../redux/carts/actions';
 import { decrementProduct, incrementProduct } from '../../redux/products/action';
 
 export default function CartItem() {
@@ -19,7 +19,9 @@ export default function CartItem() {
         dispatch(incrementProduct(productId));
     }
 
-   
+    const deleteProductHandler = (productId) => {
+        dispatch(deleteProduct(productId))
+    }
     return (
         <div>
             {
@@ -62,7 +64,9 @@ export default function CartItem() {
                         <p className="text-lg font-bold">BDT <span className="lws-calculatedPrice">${totalPrice}</span></p>
                     </div>
                     <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
-                        <button className="lws-removeFromCart">
+                        <button
+                        onClick={() => deleteProductHandler(id)}
+                        className="lws-removeFromCart">
                             <i className="text-lg text-red-400 fa-solid fa-trash"></i>
                         </button>
                     </div>
